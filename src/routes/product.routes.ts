@@ -46,7 +46,7 @@ routesProduct.get(
     }
 )
 
-routesProduct.put('/categories/:id',
+routesProduct.put('/products/:id',
   UpdateProductDto.validators(),
   validator, 
   (request: Request, response: Response, next: NextFunction) => {
