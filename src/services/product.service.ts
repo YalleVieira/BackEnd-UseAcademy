@@ -54,25 +54,21 @@ export class ProductService {
   }
 
   async show(id: string): Promise<CreatedProductDto> {
-    try {
-      const product = await this.productRepository.findOne({
-        relations: ['category'],
-        where: { id },
-      });
-      if (!product) {
-        throw new HttpException(
-          'Produto não encontrado!',
-          HttpStatus.NOT_FOUND,
-        );
-      }
-      return new CreatedProductDto(product);
-    } catch (error) {
+    const product = await this.productRepository.findOne({ where: { id } });
+    if (!product) {
       throw new HttpException(
-        'Houve um erro ao recuperar produto!',
+        'Produto não encontrada!',
         HttpStatus.BAD_REQUEST,
       );
     }
+    console.log(product);
+    return new CreatedProductDto(product);
   }
+
+  /*async productCategory(categoryId : string): Promise<CreatedProductDto>{
+    const products = await this.productRepository;
+    return products.map(p)
+  }*/
 
   async update(id: string, name: string): Promise<void> {
     try {
