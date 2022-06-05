@@ -4,6 +4,7 @@ import { CreatedProductDto } from './../dtos/product/created-product.dto';
 import { CreateProductDto } from './../dtos/product/create-product.dto';
 import { Repository, DataSource } from 'typeorm';
 import { ProductEntity } from '../entities/product.entity';
+import { CategoryEntity } from '../entities/category.entity';
 
 export class ProductService {
   private productRepository: Repository<ProductEntity>;
@@ -76,7 +77,7 @@ export class ProductService {
 
   async update(id: string, name: string, updated_at: Date): Promise<void> {
     try {
-      await this.productRepository.update(id, { name }, );
+      await this.productRepository.update(id, { name });
       await this.productRepository.update(id, { updated_at });
     } catch (error) {
       throw new HttpException(

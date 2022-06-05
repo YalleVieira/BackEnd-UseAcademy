@@ -22,6 +22,15 @@ routesCategory.get('/categories', (request: Request, response: Response, next: N
   });
 });
 
+routesCategory.get(
+  "/categories/:id",
+  (request: Request, response: Response, next: NextFunction) => {
+    categoryController.getID(request, response).catch((error: Error) => {
+      next(error);
+    });
+  }
+);
+
 routesCategory.post('/categories',
   CreateCategoryDto.validators(),
   validator,
@@ -30,15 +39,6 @@ routesCategory.post('/categories',
       next(error);
     });
   });
-
-  routesCategory.get(
-    "/categories/:id",
-    (request: Request, response: Response, next: NextFunction) => {
-      categoryController.getID(request, response).catch((error: Error) => {
-        next(error);
-      });
-    }
-  );
 
 routesCategory.put('/categories/:id',
   UpdateCategoryDto.validators(),

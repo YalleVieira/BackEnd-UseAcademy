@@ -16,14 +16,15 @@ export class CategoryController {
     return response.status(HttpStatus.OK).json(categories);
   }
 
-  async create({ body: { name } }: CreateCategoryBody, response: Response): Promise<Response<CreatedCategoryDto>> {
-    const createdCategory = await this.categoryService.create({ name });
-    return response.status(HttpStatus.CREATED).json(createdCategory);
-  }
-
+  
   async getID({ params }: Request, response: Response) {
     const category = await this.categoryService.getID(params.id);
     return response.status(HttpStatus.OK).json(category);
+  }
+
+  async create({ body: { name } }: CreateCategoryBody, response: Response): Promise<Response<CreatedCategoryDto>> {
+    const createdCategory = await this.categoryService.create({ name });
+    return response.status(HttpStatus.CREATED).json(createdCategory);
   }
 
   async update({body: category, params }: Request, response: Response) {
