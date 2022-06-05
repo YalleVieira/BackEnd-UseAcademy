@@ -3,6 +3,7 @@ import { CreatedCategoryDto } from './../dtos/category/created-category.dto';
 import { HttpStatus } from './../utils/enums/http-status.enum';
 import { Request, Response } from 'express';
 import { ProductService } from './../services/product.service';
+import { CreatedProductDto } from '../dtos/product/created-product.dto';
 
 interface CreateProductBody extends Request {
   body: CreateProductDto;
@@ -11,10 +12,11 @@ interface CreateProductBody extends Request {
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+
   async create(
     { body, file }: CreateProductBody,
-    response: Response,
-  ): Promise<Response<CreatedCategoryDto>> {
+    response: Response
+  ): Promise<Response<CreatedProductDto>> {
     const product = await this.productService.create({
       ...body,
       image: file!.filename,
@@ -30,11 +32,11 @@ export class ProductController {
     return response.status(HttpStatus.OK).json(products);
   }
 
-  async show(
+  async getID(
     { params }: Request,
     response: Response,
   ): Promise<Response<CreatedCategoryDto[]>> {
-    const product = await this.productService.show(params.id);
+    const product = await this.productService.getID(params.id);
     return response.status(HttpStatus.OK).json(product);
   }
 
@@ -42,6 +44,7 @@ export class ProductController {
     await this.productService.update(
       params.id,
       category?.name,
+      category?.updated_at
     );
     return response.status(HttpStatus.NO_CONTENT).json();
   }

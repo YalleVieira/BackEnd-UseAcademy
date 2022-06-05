@@ -34,7 +34,7 @@ routesCategory.post('/categories',
   routesCategory.get(
     "/categories/:id",
     (request: Request, response: Response, next: NextFunction) => {
-      categoryController.show(request, response).catch((error: Error) => {
+      categoryController.getID(request, response).catch((error: Error) => {
         next(error);
       });
     }

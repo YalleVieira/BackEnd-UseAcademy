@@ -6,7 +6,7 @@ export class CreatedCategoryDto extends CreateCategoryDto {
   created_at!: Date;
   updated_at!: Date;
 
-  constructor({ id, name, created_at, updated_at}: CategoryEntity) {
+  constructor({ id, name, created_at, updated_at }: CategoryEntity) {
     super();
     this.id = id;
     this.name = name;

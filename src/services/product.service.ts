@@ -33,7 +33,7 @@ export class ProductService {
       return new CreatedProductDto(saveProduct);
     } catch (error) {
       throw new HttpException(
-        'Houve um erro ao cadastrar curso!',
+        'Houve um erro ao cadastrar produto!',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -53,7 +53,7 @@ export class ProductService {
     }
   }
 
-  async show(id: string): Promise<CreatedProductDto> {
+  async getID(id: string): Promise<CreatedProductDto> {
     try {
       const product = await this.productRepository.findOne({
         relations: ['category'],
@@ -74,12 +74,13 @@ export class ProductService {
     }
   }
 
-  async update(id: string, name: string): Promise<void> {
+  async update(id: string, name: string, updated_at: Date): Promise<void> {
     try {
-      await this.productRepository.update(id, { name });
+      await this.productRepository.update(id, { name }, );
+      await this.productRepository.update(id, { updated_at });
     } catch (error) {
       throw new HttpException(
-        'Houve um erro ao atualizar a categoria!',
+        'Houve um erro ao atualizar o produto!',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -90,7 +91,7 @@ export class ProductService {
       await this.productRepository.delete(id);
     } catch (error) {
       throw new HttpException(
-        'Houve um erro ao deletar categoria!',
+        'Houve um erro ao deletar o produto!',
         HttpStatus.BAD_REQUEST,
       );
     }

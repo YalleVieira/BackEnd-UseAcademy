@@ -21,14 +21,14 @@ export class CategoryController {
     return response.status(HttpStatus.CREATED).json(createdCategory);
   }
 
-  async show({ params }: Request, response: Response) {
-    const category = await this.categoryService.show(params.id);
-    console.log(category)
+  async getID({ params }: Request, response: Response) {
+    const category = await this.categoryService.getID(params.id);
     return response.status(HttpStatus.OK).json(category);
   }
 
   async update({body: category, params }: Request, response: Response) {
-    await this.categoryService.update(params.id, category?.name, category.update_at);
+    category.updated_at = new Date;
+    await this.categoryService.update(params.id, category?.name, category.updated_at);
     return response.status(HttpStatus.NO_CONTENT).json();
   }
 

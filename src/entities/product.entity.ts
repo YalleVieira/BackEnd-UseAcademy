@@ -1,15 +1,17 @@
 import {
     Column,
+    CreateDateColumn,
     Entity,
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
+    UpdateDateColumn,
   } from "typeorm";
   import { CategoryEntity } from "./category.entity";
   
   @Entity({ name: "products" })
   export class ProductEntity {
-    @PrimaryGeneratedColumn("uuid")
+    @PrimaryGeneratedColumn("uuid") 
     id!: string;
   
     @Column({ type: "varchar", nullable: false })
@@ -26,6 +28,12 @@ import {
   
     @Column({ type: "boolean", nullable: false })
     disponibility!: boolean;
+
+    @CreateDateColumn({ name: 'created_at'})
+    created_at!: Date;
+  
+    @UpdateDateColumn({ name: 'updated_at'})
+    updated_at!: Date;
   
     @ManyToOne(() => CategoryEntity, (category) => category.products, {
       onDelete: "CASCADE",

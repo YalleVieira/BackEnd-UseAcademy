@@ -15,7 +15,6 @@ export class CategoryService {
   async getAll(): Promise<CreatedCategoryDto[]> {
     try {
       const categories = await this.categoryRepository.find();
-      console.log(categories);
       return categories.map((category) => new CreatedCategoryDto(category));
     } catch (error) {
       throw new HttpException(
@@ -38,9 +37,10 @@ export class CategoryService {
     }
   }
 
-  async update(id: string, name: string, update_at: Date): Promise<void> {
+  async update(id: string, name: string, updated_at: Date): Promise<void> {
     try {
       await this.categoryRepository.update(id, { name });
+      await this.categoryRepository.update(id, { updated_at });
     } catch (error) {
       throw new HttpException(
         'Houve um erro ao atualizar a categoria!',
@@ -49,7 +49,7 @@ export class CategoryService {
     }
   }
 
-  async show(id: string): Promise<CreatedCategoryDto> {
+  async getID(id: string): Promise<CreatedCategoryDto> {
     const category = await this.categoryRepository.findOne({ where: { id } });
     if (!category) {
       throw new HttpException(

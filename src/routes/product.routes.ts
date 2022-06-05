@@ -21,7 +21,6 @@ routesProduct.post(
     CreateProductDto.validators(),
     validator,
     (request: Request, response: Response, next: NextFunction) => {
-        console.log(request.body)
         productController.create(request, response).catch((error: Error) => {
             next(error);
         });
@@ -36,14 +35,14 @@ routesProduct.get(
         });
     }
 )
-
+ 
 routesProduct.get(
-    "/products/:id",
-    (request: Request, response: Response, next: NextFunction) => {
-        productController.show(request, response).catch((error: Error) => {
-            next(error);
-        });
-    }
+  "/products/:id",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getID(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
 )
 
 routesProduct.put('/products/:id',
