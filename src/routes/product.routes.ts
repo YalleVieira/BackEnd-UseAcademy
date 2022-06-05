@@ -44,7 +44,7 @@ routesProduct.get(
             next(error);
         });
     }
-)
+)  
 
 routesProduct.put('/products/:id',
   UpdateProductDto.validators(),
