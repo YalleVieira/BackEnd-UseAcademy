@@ -2,10 +2,11 @@
   "name": "desafio---useacademy",
   "version": "1.0.0",
   "description": "\"Desafio backend da trilha fullstack do bootcamp Use Academy\"",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --inspect --ignore-watch node_modules src/server.ts",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "start": "tsc && node dist/server.js"
   },
   "author": "Yalle Vieira",
   "license": "ISC",
