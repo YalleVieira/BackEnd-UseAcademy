@@ -66,7 +66,7 @@ routesProduct.get(
 routesProduct.get(
   "/products-ordely",
   (request: Request, response: Response, next: NextFunction) => {
-      productController.getOrder(request, response).catch((error: Error) => {
+      productController.getCrescent(request, response).catch((error: Error) => {
           next(error);
       });
   }
@@ -75,7 +75,7 @@ routesProduct.get(
 routesProduct.get(
   "/products-less",
   (request: Request, response: Response, next: NextFunction) => {
-      productController.getLess(request, response).catch((error: Error) => {
+      productController.getDecrescent(request, response).catch((error: Error) => {
           next(error);
       });
   }

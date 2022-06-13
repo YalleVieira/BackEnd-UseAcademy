@@ -107,7 +107,7 @@ export class ProductService {
   }
 
   //retorna os produtos ordenados pelo valor, de modo crescente
-  async getOrder() {
+  async getCrescent() {
     const product = await this.productRepository.find({
       relations: ['category'],
     });
@@ -118,7 +118,7 @@ export class ProductService {
   }
 
   //retorna os produtos ordenados pelo valor, de modo decrescente
-  async getLess() {
+  async getDecrescent() {
     const product = await this.productRepository.find({
       relations: ['category'],
     });

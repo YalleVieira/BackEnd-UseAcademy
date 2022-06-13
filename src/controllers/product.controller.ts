@@ -56,19 +56,19 @@ export class ProductController {
     return response.status(HttpStatus.OK).json(productsAvailable);
   }
 
-  async getOrder(
+  async getCrescent(
     _request: Request,
     response: Response,
   ): Promise<Response<CreatedCategoryDto[]>> {
-    const products = await this.productService.getOrder();
+    const products = await this.productService.getCrescent();
     return response.status(HttpStatus.OK).json(products);
   }
 
-  async getLess(
+  async getDecrescent(
     _request: Request,
     response: Response,
   ): Promise<Response<CreatedCategoryDto[]>> {
-    const products = await this.productService.getLess();
+    const products = await this.productService.getDecrescent();
     return response.status(HttpStatus.OK).json(products);
   }
 
