@@ -5,12 +5,17 @@ import { env } from "./config/environment-variables";
 import { AppDataSource } from "./config/data-source";
 import { errorHandler } from './middlewares';
 import { routesProduct } from "./routes/product.routes";
+import cors from 'cors';
 
 
 const PORT = env.PORT || 3000;
 const app = express();
-
 app.use(express.json());
+app.use(cors({
+  origin: '*',
+  methods: ['GET','HEAD','PUT','PATCH','POST','DELETE']
+}))
+
 app.use(routesCategory);
 app.use(routesProduct);
 app.use(errorHandler);
