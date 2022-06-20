@@ -1,31 +1,42 @@
 {
-  "name": "desafio---useacademy",
+  "name": "bootcamp-api",
   "version": "1.0.0",
-  "description": "\"Desafio backend da trilha fullstack do bootcamp Use Academy\"",
-  "main": "index.js",
+  "description": "Projeto backend da trilha de fullstack do bootcamp Use Academy",
+  "main": "dist/server.js",
+  "engines": {
+    "node": "17.x",
+    "npm": "8.x"
+  },
   "scripts": {
+    "start": "tsc && node dist/server.js",
     "dev": "ts-node-dev --respawn --inspect --ignore-watch node_modules src/server.ts",
     "lint:fix": "eslint . --fix"
   },
   "author": "Yalle Vieira",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@typescript-eslint/eslint-plugin": "^5.27.0",
-    "@typescript-eslint/parser": "^5.27.0",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "eslint": "^8.16.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^4.7.2"
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "ts-node-dev": "^2.0.0-0",
+    "typescript": "^4.6.4"
   },
   "dependencies": {
+    "@types/express": "^4.17.13",
     "@types/multer": "^1.4.7",
+    "@types/node": "^17.0.36",
     "dotenv": "^16.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "express": "^4.18.1",
     "express-validator": "^6.14.1",
     "multer": "^1.4.5-lts.1",
+    "prettier": "^2.6.2",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.8",
+    "ts-node": "^10.8.0",
     "typeorm": "^0.3.6"
   }
 }
