@@ -4,8 +4,8 @@
   "description": "Projeto backend da trilha de fullstack do bootcamp Use Academy",
   "main": "dist/server.js",
   "engines": {
-    "node": "17.x",
-    "npm": "8.x"
+    "node": "16.15.0",
+    "npm": "8.5.5"
   },
   "scripts": {
     "start": "tsc && node dist/server.js",
