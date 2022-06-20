@@ -3,6 +3,7 @@ import { CreatedCategoryDto } from './../dtos/category/created-category.dto';
 import { HttpStatus } from './../utils/enums/http-status.enum';
 import { Request, Response } from 'express';
 import { ProductService } from './../services/product.service';
+import { CreatedProductDto } from '../dtos/product/created-product.dto';
 
 interface CreateProductBody extends Request {
   body: CreateProductDto;
@@ -13,8 +14,8 @@ export class ProductController {
 
   async create(
     { body, file }: CreateProductBody,
-    response: Response,
-  ): Promise<Response<CreatedCategoryDto>> {
+    response: Response
+  ): Promise<Response<CreatedProductDto>> {
     const product = await this.productService.create({
       ...body,
       image: file!.filename,
@@ -30,12 +31,51 @@ export class ProductController {
     return response.status(HttpStatus.OK).json(products);
   }
 
-  async show(
+  async getID(
     { params }: Request,
     response: Response,
   ): Promise<Response<CreatedCategoryDto[]>> {
-    const product = await this.productService.show(params.id);
+    const product = await this.productService.getID(params.id);
     return response.status(HttpStatus.OK).json(product);
+  }
+
+  async getName(
+    { params }: Request,
+    response: Response,
+  ): Promise<Response<CreatedCategoryDto[]>> {
+    const product = await this.productService.getName(params.name);
+    return response.status(HttpStatus.OK).json(product);
+  }
+
+  async getCategory({ params }: Request,
+    response: Response,
+  ): Promise<Response<CreatedCategoryDto[]>> {
+    const product = await this.productService.getCategory(params.id);
+    return response.status(HttpStatus.OK).json(product);
+  }
+
+  async getDisponibility(
+    _request: Request,
+    response: Response,
+  ): Promise<Response<CreatedCategoryDto[]>> {
+    const productsAvailable = await this.productService.getDisponibility();
+    return response.status(HttpStatus.OK).json(productsAvailable);
+  }
+
+  async getCrescent(
+    _request: Request,
+    response: Response,
+  ): Promise<Response<CreatedCategoryDto[]>> {
+    const products = await this.productService.getCrescent();
+    return response.status(HttpStatus.OK).json(products);
+  }
+
+  async getDecrescent(
+    _request: Request,
+    response: Response,
+  ): Promise<Response<CreatedCategoryDto[]>> {
+    const products = await this.productService.getDecrescent();
+    return response.status(HttpStatus.OK).json(products);
   }
 
   async update({ body: category, params }: Request, response: Response) {

@@ -29,22 +29,67 @@ routesProduct.post(
 )
 
 routesProduct.get(
-    "/products",
-    (request: Request, response: Response, next: NextFunction) => {
-        productController.getAll(request, response).catch((error: Error) => {
-            next(error);
-        });
-    }
+  "/products",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getAll(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
 )
 
 routesProduct.get(
-    "/products/:id",
-    (request: Request, response: Response, next: NextFunction) => {
-        productController.show(request, response).catch((error: Error) => {
-            next(error);
-        });
-    } 
-)  
+  "/products/:id",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getID(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
+)
+
+routesProduct.get(
+  "/products-name/:name",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getName(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
+)
+
+routesProduct.get(
+  "/products-category/:id",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getCategory(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
+)
+
+routesProduct.get(
+  "/products-avaliable",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getDisponibility(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
+)
+
+routesProduct.get(
+  "/products-ordely",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getCrescent(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
+)
+
+routesProduct.get(
+  "/products-less",
+  (request: Request, response: Response, next: NextFunction) => {
+      productController.getDecrescent(request, response).catch((error: Error) => {
+          next(error);
+      });
+  }
+)
 
 routesProduct.put('/products/:id',
   UpdateProductDto.validators(),

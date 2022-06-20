@@ -33,7 +33,7 @@ export class ProductService {
       return new CreatedProductDto(saveProduct);
     } catch (error) {
       throw new HttpException(
-        'Houve um erro ao cadastrar curso!',
+        'Houve um erro ao cadastrar produto!',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -53,7 +53,7 @@ export class ProductService {
     }
   }
 
-  async show(id: string): Promise<CreatedProductDto> {
+  async getID(id: string): Promise<CreatedProductDto> {
     try {
       const product = await this.productRepository.findOne({
         relations: ['category'],
@@ -73,6 +73,83 @@ export class ProductService {
       );
     }
   }
+
+  async getName(name: string): Promise<CreatedProductDto> {
+    try {
+      const product = await this.productRepository.findOne({
+        relations: ['category'],
+        where: { name },
+      });
+      if (!product) {
+        throw new HttpException(
+          'Produto não encontrado!',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      return new CreatedProductDto(product);
+    } catch (error) {
+      throw new HttpException(
+        'Houve um erro ao recuperar produto!',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+
+  //lista todos os produtos de uma única categoria
+    async getCategory(category_id: string) {
+      const products = await this.productRepository.find({
+        relations: ['category'],
+      });
+      var productsCategory = products.filter(product => product.category.id == category_id);
+      return productsCategory;
+    }
+
+
+  //retorna os produtos disponíveis
+  async getDisponibility() {
+    try {
+      const products = await this.productRepository.find({
+        relations: ['category'],
+      });
+      var productsAvailable = products.filter(product => product.disponibility == true);
+      if (productsAvailable.length == 0) {
+        throw new HttpException(
+          'Não existem produtos disponíveis!',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      return productsAvailable;
+    } catch (error) {
+      throw new HttpException(
+        'Houve um erro ao recuperar os produtos!',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  //retorna os produtos ordenados pelo valor, de modo crescente
+  async getCrescent() {
+    const product = await this.productRepository.find({
+      relations: ['category'],
+    });
+    var productOrdely = product.sort(function (value1, value2) {
+      return value1.value - value2.value;
+    });
+    return productOrdely;
+  }
+
+  //retorna os produtos ordenados pelo valor, de modo decrescente
+  async getDecrescent() {
+    const product = await this.productRepository.find({
+      relations: ['category'],
+    });
+    var productLess = product.sort(function (value1, value2) {
+      return value2.value - value1.value;
+    });
+    return productLess;
+  }
+
 
   async update(id: string, name: string): Promise<void> {
     try {
