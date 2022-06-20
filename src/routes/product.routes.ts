@@ -43,7 +43,7 @@ routesProduct.get(
         productController.show(request, response).catch((error: Error) => {
             next(error);
         });
-    }
+    } 
 )  
 
 routesProduct.put('/products/:id',
