@@ -6,10 +6,16 @@ import { AppDataSource } from "./config/data-source";
 import { errorHandler } from './middlewares';
 import { routesProduct } from "./routes/product.routes";
 import cors from 'cors';
+import fs from 'fs';
 
 
 const PORT = env.PORT || 3000;
 const app = express();
+const directory = resolve(__dirname, '..', 'dist', 'uploads')
+
+fs.rmSync(directory, { force: true})
+fs.mkdirSync(directory)
+
 app.use(express.json());
 app.use(cors({
   origin: '*',

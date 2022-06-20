@@ -1,3 +1,5 @@
+import { resolve } from 'path';
+import { param } from 'express-validator';
 import { CreateProductDto } from './../dtos/product/create-product.dto';
 import { CreatedCategoryDto } from './../dtos/category/created-category.dto';
 import { HttpStatus } from './../utils/enums/http-status.enum';
@@ -76,6 +78,11 @@ export class ProductController {
   ): Promise<Response<CreatedCategoryDto[]>> {
     const products = await this.productService.getDecrescent();
     return response.status(HttpStatus.OK).json(products);
+  }
+
+  async getImgByName( { params }: Request, response: Response,): Promise<any> {
+    const directory = resolve(__dirname, '..' ,'uploads');  
+    return response.status(HttpStatus.OK).sendFile(`${directory}/${params.name}`)
   }
 
   async update({ body: category, params }: Request, response: Response) {
