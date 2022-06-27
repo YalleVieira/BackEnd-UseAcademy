@@ -21,7 +21,6 @@ routesProduct.post(
     CreateProductDto.validators(),
     validator,
     (request: Request, response: Response, next: NextFunction) => {
-        console.log(request.body)
         productController.create(request, response).catch((error: Error) => {
             next(error);
         });

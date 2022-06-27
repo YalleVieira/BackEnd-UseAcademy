@@ -7,14 +7,20 @@ import { errorHandler } from './middlewares';
 import { routesProduct } from "./routes/product.routes";
 
 
+
 const PORT = env.PORT || 3000;
 const app = express();
+const cors = require('cors')
+
+app.use(cors())
 
 app.use(express.json());
 app.use(routesCategory);
 app.use(routesProduct);
 app.use(errorHandler);
 app.use('/files', express.static(resolve(__dirname, '..', 'uploads')));
+
+
 
 
 AppDataSource.initialize().then(() => {

@@ -23,7 +23,6 @@ export class CategoryController {
 
   async show({ params }: Request, response: Response) {
     const category = await this.categoryService.show(params.id);
-    console.log(category)
     return response.status(HttpStatus.OK).json(category);
   }
 

@@ -15,7 +15,6 @@ export class CategoryService {
   async getAll(): Promise<CreatedCategoryDto[]> {
     try {
       const categories = await this.categoryRepository.find();
-      console.log(categories);
       return categories.map((category) => new CreatedCategoryDto(category));
     } catch (error) {
       throw new HttpException(
@@ -57,7 +56,6 @@ export class CategoryService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    console.log(category);
     return new CreatedCategoryDto(category);
   }
 
